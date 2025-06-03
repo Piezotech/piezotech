@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PiezoTech | Giyilebilir Enerji Sistemleri</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -12,94 +12,135 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+
     body {
       background-color: #0f0f0f;
-      color: #f5f5f5;
+      color: #fff;
+      overflow: hidden;
     }
-    header {
+
+    .landing {
+      height: 100vh;
+      background: radial-gradient(ellipse at top, #1a1a1a, #000);
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       text-align: center;
-      height: 100vh;
-      background: radial-gradient(circle at center, #202020, #0f0f0f);
       position: relative;
-      overflow: hidden;
     }
-    header::before {
-      content: "";
+
+    .background-particles {
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, #00ffe1 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.03;
-      animation: move 60s linear infinite;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       z-index: 0;
     }
-    @keyframes move {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(40px, 40px); }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #f7c600;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 8s infinite ease-in-out;
     }
-    header img {
-      width: 200px;
-      z-index: 1;
-      margin-bottom: 1rem;
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-30px) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+      }
     }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 800;
+
+    .overlay {
+      z-index: 2;
+    }
+
+    .logo {
+      width: 140px;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      font-size: 2.8rem;
       color: #f7c600;
+      font-weight: 800;
       margin-bottom: 1rem;
-      z-index: 1;
     }
-    header p {
-      font-size: 1.2rem;
-      color: #cccccc;
+
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
       margin-bottom: 2rem;
-      max-width: 600px;
-      z-index: 1;
     }
-    .nav-buttons {
+
+    .buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
       justify-content: center;
-      z-index: 1;
+      gap: 1rem;
     }
+
     .btn {
       background-color: #f7c600;
-      color: #1f1f1f;
-      padding: 0.8rem 1.8rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
+      color: #000;
+      padding: 0.7rem 1.4rem;
+      border-radius: 6px;
       text-decoration: none;
+      font-weight: 600;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(247, 198, 0, 0.3);
     }
+
     .btn:hover {
-      background-color: #e6b800;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(247, 198, 0, 0.4);
+      background-color: #ffe066;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="PiezoTech Logo">
-    <h1>Enerjiyi Geleceğe Taşıyoruz</h1>
-    <p>Giyilebilir piezoelektrik çözümlerle sürdürülebilir teknolojiyi insan yaşamına entegre ediyoruz.</p>
-    <div class="nav-buttons">
-      <a href="hakkimizda.html" class="btn">Hakkımızda</a>
-      <a href="projeler.html" class="btn">Projelerimiz</a>
-      <a href="galeri.html" class="btn">Galeri</a>
-      <a href="iletisim.html" class="btn">İletişim</a>
+  <div class="landing">
+    <div class="background-particles">
+      <!-- 30 adet parlayan partikül -->
+      <script>
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = Math.random() * 100 + '%';
+          particle.style.animationDelay = Math.random() * 5 + 's';
+          document.querySelector('.background-particles').appendChild(particle);
+        }
+      </script>
     </div>
-  </header>
+    <div class="overlay">
+      <img src="logo.png" alt="PiezoTech Logo" class="logo" />
+      <h1>Enerjiyi Geleceğe Taşıyoruz</h1>
+      <p>PiezoTech araştırma grubu ile yenilikçi giyilebilir enerji sistemleri geliştiriyoruz.</p>
+      <div class="buttons">
+        <a href="hakkimizda.html" class="btn">Hakkımızda</a>
+        <a href="projeler.html" class="btn">Projeler</a>
+        <a href="galeri.html" class="btn">Galeri</a>
+        <a href="iletisim.html" class="btn">İletişim</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
